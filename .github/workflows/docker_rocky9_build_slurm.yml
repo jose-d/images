@@ -1,4 +1,4 @@
-name: Build Rocky Linux 9 docker image for Slurm build
+name: Build Rocky9 Docker img for Slurm build
 run-name: ${{ github.actor }} is attempting to build slurm docker image 🚀
 on: workflow_dispatch
 permissions: write-all
