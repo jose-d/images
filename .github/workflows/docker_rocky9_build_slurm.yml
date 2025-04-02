@@ -27,4 +27,4 @@ jobs:
       with:
         context: docker/rocky9/slurm-build
         push: true
-        tags: ghcr.io/${{ github.repository }}/rocky9_pmix-build:latest
+        tags: ghcr.io/${{ github.repository }}/rocky9_slurm-build:latest
