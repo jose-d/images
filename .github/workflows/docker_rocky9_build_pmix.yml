@@ -1,4 +1,4 @@
-name: Build Rocky Linux 9 docker image for PMI-X build
+name: Build Rocky9 Docker img for PMI-X build
 run-name: ${{ github.actor }} is attempting to build pmi-x docker image 🚀
 on: workflow_dispatch
 permissions: write-all
