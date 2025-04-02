@@ -7,9 +7,13 @@ Repository for docker, apptainer, etc. images
 
 #### base-build
 
+```docker pull ghcr.io/jose-d/images/rocky9_base-build:latest```
+
 Basic build image based on Rocky Linux 9 containing common building dependencies like `crb`, `Development Tools`, etc.
 
 #### pmix-build
+
+```docker pull ghcr.io/jose-d/images/rocky9_pmix-build:latest```
 
 Image extending `base-build` with pmi-x build dependencies.
 
