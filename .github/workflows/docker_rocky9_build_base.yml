@@ -11,7 +11,8 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
       with:
-        sparse-checkout: docker/rocky9/base-build
+        sparse-checkout: docker/rocky9/base-build/Dockerfile
+        sparse-checkout-cone-mode: false
       
     - name: Login to GitHub Container Registry
       uses: docker/login-action@v3
