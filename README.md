@@ -19,6 +19,8 @@ Image extending `base-build` with pmi-x build dependencies.
 
 #### slurm-build
 
+```docker pull ghcr.io/jose-d/images/rocky9_slurm-build:latest```
+
 Image extending `base-build` with pmi-x build dependencies, especially nvidia libs, munge, jwt, mariadb, etc..
 
 
