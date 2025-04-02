@@ -28,3 +28,5 @@ jobs:
         context: docker/rocky8/slurm-build
         push: true
         tags: ghcr.io/${{ github.repository }}/rocky8_slurm-build:latest
+        build-args:
+          -  NVML_VERSION=12-6
