@@ -1,4 +1,4 @@
-name: Build base Rocky Linux 9 docker image
+name: Build Rocky9 base Docker img
 run-name: ${{ github.actor }} is attempting to build rocky 9 base docker image 🚀
 on: workflow_dispatch
 permissions: write-all
