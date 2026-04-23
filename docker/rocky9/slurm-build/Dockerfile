@@ -1,8 +1,6 @@
-ARG IMAGE_REPOSITORY=ghcr.io/jose-d/images
-
-FROM ${IMAGE_REPOSITORY}/rocky9_pmix-build:latest
-ARG NVML_VERSION=13-2
-ARG NV_DRIVER_VERSION=580
+FROM ghcr.io/jose-d/images/rocky9_pmix-build:latest
+ARG NVML_VERSION=12-6
+ARG NV_DRIVER_VERSION=560
 
 RUN echo "In Docker: NVML_VERSION: $NVML_VERSION"
 RUN echo "In Docker: NV_DRIVER_VERSION: $NV_DRIVER_VERSION"

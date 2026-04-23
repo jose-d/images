@@ -1,22 +1,10 @@
 name: Build Rocky8 Docker img for Slurm build
 run-name: ${{ github.actor }} is attempting to build slurm docker image 🚀
-on:
-  workflow_dispatch:
-    inputs:
-      nv_driver_version:
-        description: NVIDIA driver module stream
-        required: false
-        default: "580"
-      nvml_version:
-        description: CUDA NVML package version
-        required: false
-        default: "13-2"
-permissions:
-  contents: read
-  packages: write
+on: workflow_dispatch
+permissions: write-all
 jobs:
 
-  build_el8_slurm_build-image:
+  build_el9_slurm_build-image:
     name: Build docker image for slurm build on Rocky8
     runs-on: ubuntu-latest
     steps:
@@ -41,6 +29,4 @@ jobs:
         push: true
         tags: ghcr.io/${{ github.repository }}/rocky8_slurm-build:latest
         build-args: |
-          IMAGE_REPOSITORY=ghcr.io/${{ github.repository }}
-          NV_DRIVER_VERSION=${{ inputs.nv_driver_version }}
-          NVML_VERSION=${{ inputs.nvml_version }}
+          NVML_VERSION=13-0

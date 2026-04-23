@@ -1,18 +1,16 @@
 name: Build Rocky8 Docker img for PMI-X build
 run-name: ${{ github.actor }} is attempting to build pmi-x docker image 🚀
 on: workflow_dispatch
-permissions:
-  contents: read
-  packages: write
+permissions: write-all
 jobs:
 
-  build_base8_build-image:
+  build_base9_build-image:
     name: Build docker image for pmi-x build on Rocky8
     runs-on: ubuntu-latest
     steps:
 
     - name: Checkout repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v3
       
     - name: Login to GitHub Container Registry
       uses: docker/login-action@v3
@@ -30,5 +28,3 @@ jobs:
         context: docker/rocky8/pmix-build
         push: true
         tags: ghcr.io/${{ github.repository }}/rocky8_pmix-build:latest
-        build-args: |
-          IMAGE_REPOSITORY=ghcr.io/${{ github.repository }}
