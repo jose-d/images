@@ -1,7 +1,9 @@
 name: Build Rocky9 Docker img for PMI-X build
 run-name: ${{ github.actor }} is attempting to build pmi-x docker image 🚀
 on: workflow_dispatch
-permissions: write-all
+permissions:
+  contents: read
+  packages: write
 jobs:
 
   build_base9_build-image:
@@ -10,7 +12,7 @@ jobs:
     steps:
 
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       
     - name: Login to GitHub Container Registry
       uses: docker/login-action@v3
@@ -28,3 +30,5 @@ jobs:
         context: docker/rocky9/pmix-build
         push: true
         tags: ghcr.io/${{ github.repository }}/rocky9_pmix-build:latest
+        build-args: |
+          IMAGE_REPOSITORY=ghcr.io/${{ github.repository }}
