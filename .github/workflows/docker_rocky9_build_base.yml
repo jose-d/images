@@ -1,7 +1,9 @@
 name: Build Rocky9 base Docker img
 run-name: ${{ github.actor }} is attempting to build rocky 9 base docker image 🚀
 on: workflow_dispatch
-permissions: write-all
+permissions:
+  contents: read
+  packages: write
 jobs:
   build_base9_build-image:
     name: Build base docker image for Rocky9
