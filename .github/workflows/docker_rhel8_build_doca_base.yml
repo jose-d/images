@@ -31,7 +31,5 @@ jobs:
         uses: docker/build-push-action@v7
         with:
           context: docker/rhel8/doca-base
-          build-args: |
-            DOCA_GPG_KEY_URL=${{ inputs.doca_gpg_key_url }}
           push: true
           tags: ghcr.io/${{ github.repository }}/rhel8_doca-base:latest
