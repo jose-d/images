@@ -1,0 +1,35 @@
+name: Prune old Docker images
+
+on:
+  schedule:
+    - cron: '0 3 * * 0'   # every Sunday at 03:00 UTC
+  workflow_dispatch:
+
+permissions:
+  packages: write
+
+jobs:
+  prune:
+    name: Delete image versions older than 7 days
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        package:
+          - rocky8_base-build
+          - rocky8_pmix-build
+          - rocky8_slurm-build
+          - rocky9_base-build
+          - rocky9_pmix-build
+          - rocky9_slurm-build
+    steps:
+      - name: Delete old versions of ${{ matrix.package }}
+        uses: actions/delete-package-versions@v5
+        with:
+          package-name: images/${{ matrix.package }}
+          package-type: container
+          min-versions-to-keep: 1
+          delete-only-pre-release-versions: false
+          ignore-versions: '^latest$'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          delete-only-untagged-versions: false
+          older-than: 7 days
