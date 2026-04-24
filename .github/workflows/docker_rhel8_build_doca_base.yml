@@ -33,6 +33,6 @@ jobs:
         with:
           context: docker/rhel8/doca-base
           build-args: |
-            DOCA_GPG_KEY_URL=${{ inputs.doca_gpg_key_url }}
+            DOCA_GPG_KEY_URL=${{ inputs.doca_gpg_key_url || 'https://linux.mellanox.com/public/repo/doca/GPG-KEY-Mellanox.pub' }}
           push: true
           tags: ghcr.io/${{ github.repository }}/rhel8_doca-base:latest
