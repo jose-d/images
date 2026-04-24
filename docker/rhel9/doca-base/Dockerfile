@@ -1,4 +1,4 @@
-# DOCA base image based on Rocky Linux 9 (RHEL9-compatible)
+# DOCA base image based on Rocky Linux 9 (EL9-compatible)
 # Installs doca-host from the NVIDIA/Mellanox DOCA repository
 
 FROM rockylinux:9
