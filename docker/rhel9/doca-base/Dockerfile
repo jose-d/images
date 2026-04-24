@@ -5,7 +5,7 @@ FROM rockylinux:9
 
 ARG DOCA_VERSION=3.3.0
 ARG EL_VERSION=rhel9
-ARG DOCA_GPG_KEY_URL=https://linux.mellanox.com/public/repo/doca/RPM-GPG-KEY-Mellanox
+ARG DOCA_GPG_KEY_URL=https://linux.mellanox.com/public/repo/doca/3.3.0/rhel9/x86_64/GPG-KEY-Mellanox.pub
 
 RUN dnf install -y dnf-plugins-core
 RUN rpm --import ${DOCA_GPG_KEY_URL}
