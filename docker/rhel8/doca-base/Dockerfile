@@ -1,4 +1,4 @@
-# DOCA base image based on Rocky Linux 8 (RHEL8-compatible)
+# DOCA base image based on Rocky Linux 8 (EL8-compatible)
 # Installs doca-host from the NVIDIA/Mellanox DOCA repository
 
 FROM rockylinux:8
