@@ -1,6 +1,12 @@
 name: Build RHEL8 DOCA base Docker img
 run-name: ${{ github.actor }} is attempting to build RHEL8 DOCA base docker image 🚀
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      doca_gpg_key_url:
+        description: Mellanox DOCA repository GPG key URL
+        required: false
+        default: https://linux.mellanox.com/public/repo/doca/GPG-KEY-Mellanox.pub
 permissions:
   contents: read
   packages: write
@@ -26,5 +32,7 @@ jobs:
         uses: docker/build-push-action@v7
         with:
           context: docker/rhel8/doca-base
+          build-args: |
+            DOCA_GPG_KEY_URL=${{ inputs.doca_gpg_key_url }}
           push: true
           tags: ghcr.io/${{ github.repository }}/rhel8_doca-base:latest
