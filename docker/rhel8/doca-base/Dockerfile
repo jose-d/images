@@ -5,10 +5,14 @@ FROM rockylinux:8
 
 ARG DOCA_VERSION=3.3.0
 ARG EL_VERSION=rhel8
-ARG DOCA_GPG_KEY_URL=https://linux.mellanox.com/public/repo/doca/GPG-KEY-Mellanox.pub
+ARG DOCA_GPG_KEY_URL
 
 RUN dnf install -y dnf-plugins-core
-RUN rpm --import ${DOCA_GPG_KEY_URL}
+RUN if [ -n "${DOCA_GPG_KEY_URL}" ]; then \
+        rpm --import "${DOCA_GPG_KEY_URL}"; \
+    else \
+        rpm --import "https://linux.mellanox.com/public/repo/doca/${DOCA_VERSION}/${EL_VERSION}/x86_64/GPG-KEY-Mellanox.pub"; \
+    fi
 RUN dnf config-manager --add-repo https://linux.mellanox.com/public/repo/doca/${DOCA_VERSION}/${EL_VERSION}/x86_64/
 RUN dnf repolist -v
 RUN dnf -y install --setopt=gpgcheck=1 doca-ofed
