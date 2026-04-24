@@ -19,6 +19,7 @@ RUN DOCA_REPO_NAME="doca-${DOCA_VERSION}" && \
         "gpgcheck=1" \
         "cost=10" \
         "gpgkey=${DOCA_REPO_GPG_URL}" \
-        > "/etc/yum.repos.d/${DOCA_REPO_NAME}.repo"
+        > "/etc/yum.repos.d/${DOCA_REPO_NAME}.repo" && \
+    cat "/etc/yum.repos.d/${DOCA_REPO_NAME}.repo"
 RUN dnf -y install --setopt=gpgcheck=1 doca-ofed
 RUN dnf clean all
