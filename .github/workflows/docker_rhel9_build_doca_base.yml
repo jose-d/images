@@ -6,7 +6,7 @@ on:
       doca_gpg_key_url:
         description: Mellanox DOCA repository GPG key URL
         required: false
-        default: https://linux.mellanox.com/public/repo/doca/GPG-KEY-Mellanox.pub
+        default: https://linux.mellanox.com/public/repo/doca/RPM-GPG-KEY-Mellanox
 permissions:
   contents: read
   packages: write
@@ -33,6 +33,6 @@ jobs:
         with:
           context: docker/rhel9/doca-base
           build-args: |
-            DOCA_GPG_KEY_URL=${{ inputs.doca_gpg_key_url || 'https://linux.mellanox.com/public/repo/doca/GPG-KEY-Mellanox.pub' }}
+            DOCA_GPG_KEY_URL=${{ inputs.doca_gpg_key_url || 'https://linux.mellanox.com/public/repo/doca/RPM-GPG-KEY-Mellanox' }}
           push: true
           tags: ghcr.io/${{ github.repository }}/rhel9_doca-base:latest
