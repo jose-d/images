@@ -6,7 +6,7 @@ on:
       nv_driver_version:
         description: NVIDIA driver module stream
         required: false
-        default: "580"
+        default: "open-dkms"
       nvml_version:
         description: CUDA NVML package version
         required: false
