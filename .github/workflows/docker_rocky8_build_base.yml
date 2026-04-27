@@ -1,6 +1,16 @@
 name: Build Rocky8 base Docker img
 run-name: ${{ github.actor }} is attempting to build rocky 8 base docker image 🚀
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      nv_driver_version:
+        description: NVIDIA driver module stream
+        required: false
+        default: "open-dkms"
+      nvml_version:
+        description: CUDA NVML package version
+        required: false
+        default: "13-2"
 permissions:
   contents: read
   packages: write
@@ -29,3 +39,6 @@ jobs:
         context: docker/rocky8/base-build
         push: true
         tags: ghcr.io/${{ github.repository }}/rocky8_base-build:latest
+        build-args: |
+          NV_DRIVER_VERSION=${{ inputs.nv_driver_version }}
+          NVML_VERSION=${{ inputs.nvml_version }}

@@ -25,7 +25,7 @@ Base image based on Rocky Linux 9 (RHEL9-compatible) with `doca-host` installed 
 
 ```docker pull ghcr.io/jose-d/images/rocky9_base-build:latest```
 
-Basic build image based on Rocky Linux 9 containing common building dependencies like `crb`, `Development Tools`, etc.
+Basic build image based on Rocky Linux 9 containing common building dependencies like `crb`, `Development Tools`, and the NVIDIA/CUDA libraries needed by downstream builds.
 
 #### pmix-build
 
@@ -37,5 +37,4 @@ Image extending `base-build` with pmi-x build dependencies.
 
 ```docker pull ghcr.io/jose-d/images/rocky9_slurm-build:latest```
 
-Image extending `base-build` with pmi-x build dependencies, especially nvidia libs, munge, jwt, mariadb, etc..
-
+Image extending `base-build` with pmi-x build dependencies, especially munge, jwt, mariadb, etc..
