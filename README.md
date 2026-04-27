@@ -19,13 +19,33 @@ Base image based on Rocky Linux 8 (RHEL8-compatible) with `doca-host` installed 
 
 Base image based on Rocky Linux 9 (RHEL9-compatible) with `doca-host` installed from the [NVIDIA/Mellanox DOCA 3.3.0 RHEL9 repository](https://linux.mellanox.com/public/repo/doca/3.3.0/rhel9/x86_64/).
 
+### Rocky8
+
+#### base-build
+
+```docker pull ghcr.io/jose-d/images/rocky8_base-build:latest```
+
+Basic build image based on Rocky Linux 8 containing common building dependencies like `powertools`, `rpm-build`, etc.
+
+#### base_nv-build
+
+```docker pull ghcr.io/jose-d/images/rocky8_base_nv-build:latest```
+
+Image extending `base-build` with the NVIDIA driver and CUDA libraries (nvml).
+
 ### Rocky9
 
 #### base-build
 
 ```docker pull ghcr.io/jose-d/images/rocky9_base-build:latest```
 
-Basic build image based on Rocky Linux 9 containing common building dependencies like `crb`, `Development Tools`, and the NVIDIA/CUDA libraries needed by downstream builds.
+Basic build image based on Rocky Linux 9 containing common building dependencies like `crb`, `Development Tools`, etc.
+
+#### base_nv-build
+
+```docker pull ghcr.io/jose-d/images/rocky9_base_nv-build:latest```
+
+Image extending `base-build` with the NVIDIA driver and CUDA libraries (nvml).
 
 #### pmix-build
 
@@ -37,4 +57,5 @@ Image extending `base-build` with pmi-x build dependencies.
 
 ```docker pull ghcr.io/jose-d/images/rocky9_slurm-build:latest```
 
-Image extending `base-build` with pmi-x build dependencies, especially munge, jwt, mariadb, etc..
+Image extending `base-build` with pmi-x build dependencies, especially NVIDIA libs, munge, jwt, mariadb, etc..
+
