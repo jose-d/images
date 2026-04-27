@@ -1,31 +1,128 @@
-name: Build Rocky8 base Docker img
-run-name: ${{ github.actor }} is attempting to build rocky 8 base docker image 🚀
-on: workflow_dispatch
+---
+name: Build Rocky8 Docker imgs
+run-name: >-
+  ${{ github.actor }} is attempting to build Rocky 8 docker images 🚀
+'on':
+  workflow_dispatch:
+    inputs:
+      nv_driver_version:
+        description: NVIDIA driver module stream
+        required: false
+        default: 'open-dkms'
+      nvml_version:
+        description: CUDA NVML package version
+        required: false
+        default: '13-2'
 permissions:
   contents: read
   packages: write
+concurrency:
+  group: ${{ github.workflow }}-rocky8-base
+  cancel-in-progress: true
 jobs:
-  build_base8_build-image:
+  build_base:
     name: Build base docker image for Rocky8
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
 
-    - name: Checkout repository
-      uses: actions/checkout@v6
-      
-    - name: Login to GitHub Container Registry
-      uses: docker/login-action@v4
-      with:
-        registry: ghcr.io
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v4
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Set up Docker Build
-      uses: docker/setup-buildx-action@v4
-          
-    - name: Build and push
-      uses: docker/build-push-action@v7
-      with:
-        context: docker/rocky8/base-build
-        push: true
-        tags: ghcr.io/${{ github.repository }}/rocky8_base-build:latest
+      - name: Set up Docker Build
+        uses: docker/setup-buildx-action@v4
+
+      - name: Build and push
+        uses: docker/build-push-action@v7
+        with:
+          context: docker/rocky8/base-build
+          push: true
+          tags: ghcr.io/${{ github.repository }}/rocky8_base-build:latest
+
+  build_base_nv:
+    name: Build base_nv docker image for Rocky8
+    runs-on: ubuntu-latest
+    needs: build_base
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v4
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Docker Build
+        uses: docker/setup-buildx-action@v4
+
+      - name: Build and push
+        uses: docker/build-push-action@v7
+        with:
+          context: docker/rocky8/base_nv-build
+          push: true
+          tags: ghcr.io/${{ github.repository }}/rocky8_base_nv-build:latest
+          build-args: |
+            IMAGE_REPOSITORY=ghcr.io/${{ github.repository }}
+            NV_DRIVER_VERSION=${{ inputs.nv_driver_version }}
+            NVML_VERSION=${{ inputs.nvml_version }}
+
+  build_pmix:
+    name: Build docker image for pmi-x build on Rocky8
+    runs-on: ubuntu-latest
+    needs: build_base_nv
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v4
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Docker Build
+        uses: docker/setup-buildx-action@v4
+
+      - name: Build and push
+        uses: docker/build-push-action@v7
+        with:
+          context: docker/rocky8/pmix-build
+          push: true
+          tags: ghcr.io/${{ github.repository }}/rocky8_pmix-build:latest
+          build-args: |
+            IMAGE_REPOSITORY=ghcr.io/${{ github.repository }}
+
+  build_slurm:
+    name: Build docker image for slurm build on Rocky8
+    runs-on: ubuntu-latest
+    needs: build_pmix
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v4
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Docker Build
+        uses: docker/setup-buildx-action@v4
+
+      - name: Build and push
+        uses: docker/build-push-action@v7
+        with:
+          context: docker/rocky8/slurm-build
+          push: true
+          tags: ghcr.io/${{ github.repository }}/rocky8_slurm-build:latest
+          build-args: |
+            IMAGE_REPOSITORY=ghcr.io/${{ github.repository }}
