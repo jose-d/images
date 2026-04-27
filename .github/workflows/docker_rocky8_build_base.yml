@@ -16,6 +16,9 @@ run-name: >-
 permissions:
   contents: read
   packages: write
+concurrency:
+  group: ${{ github.workflow }}-rocky8-base
+  cancel-in-progress: true
 jobs:
   build_base:
     name: Build base docker image for Rocky8
