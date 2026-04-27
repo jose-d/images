@@ -16,9 +16,11 @@ jobs:
       matrix:
         package:
           - rocky8_base-build
+          - rocky8_base_nv-build
           - rocky8_pmix-build
           - rocky8_slurm-build
           - rocky9_base-build
+          - rocky9_base_nv-build
           - rocky9_pmix-build
           - rocky9_slurm-build
     steps:
