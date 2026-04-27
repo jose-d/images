@@ -37,13 +37,13 @@ Image extending `base-build` with the NVIDIA driver and CUDA libraries (nvml).
 
 ```docker pull ghcr.io/jose-d/images/rocky8_pmix-build:latest```
 
-Image extending `base_nv-build` with pmi-x build dependencies.
+Image extending `base_nv-build` with pmix build dependencies.
 
 #### slurm-build
 
 ```docker pull ghcr.io/jose-d/images/rocky8_slurm-build:latest```
 
-Image extending `pmix-build` with Slurm build dependencies like munge, jwt, mariadb, etc..
+Image extending `pmix-build` with Slurm build dependencies like munge, jwt, mariadb, etc.
 
 ### Rocky9
 
@@ -63,10 +63,10 @@ Image extending `base-build` with the NVIDIA driver and CUDA libraries (nvml).
 
 ```docker pull ghcr.io/jose-d/images/rocky9_pmix-build:latest```
 
-Image extending `base_nv-build` with pmi-x build dependencies.
+Image extending `base_nv-build` with pmix build dependencies.
 
 #### slurm-build
 
 ```docker pull ghcr.io/jose-d/images/rocky9_slurm-build:latest```
 
-Image extending `pmix-build` with Slurm build dependencies like munge, jwt, mariadb, etc..
+Image extending `pmix-build` with Slurm build dependencies like munge, jwt, mariadb, etc.
