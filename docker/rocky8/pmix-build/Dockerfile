@@ -1,6 +1,6 @@
 ARG IMAGE_REPOSITORY=ghcr.io/jose-d/images
 
-FROM ${IMAGE_REPOSITORY}/rocky8_base-build:latest
+FROM ${IMAGE_REPOSITORY}/rocky8_base_nv-build:latest
 
 RUN dnf -y update && \
     dnf install -y zlib-devel hwloc-devel libevent-devel python3-devel jansson-devel && \
