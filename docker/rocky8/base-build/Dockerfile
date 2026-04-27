@@ -1,7 +1,7 @@
 FROM rockylinux:8
 
 ARG NVML_VERSION=13-2
-ARG NV_DRIVER_VERSION=open-dkms
+ARG NV_DRIVER_VERSION=580
 
 RUN dnf update -y && \
     dnf install -y dnf-plugins-core && \

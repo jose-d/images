@@ -3,7 +3,7 @@
 FROM rockylinux:9
 
 ARG NVML_VERSION=13-2
-ARG NV_DRIVER_VERSION=open-dkms
+ARG NV_DRIVER_VERSION=580
 
 RUN dnf -y update
 # not sure if we really need crb, but if we do, we need dnf-plugins-core too:
