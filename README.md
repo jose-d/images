@@ -33,6 +33,18 @@ Basic build image based on Rocky Linux 8 containing common building dependencies
 
 Image extending `base-build` with the NVIDIA driver and CUDA libraries (nvml).
 
+#### pmix-build
+
+```docker pull ghcr.io/jose-d/images/rocky8_pmix-build:latest```
+
+Image extending `base_nv-build` with pmi-x build dependencies.
+
+#### slurm-build
+
+```docker pull ghcr.io/jose-d/images/rocky8_slurm-build:latest```
+
+Image extending `pmix-build` with Slurm build dependencies like munge, jwt, mariadb, etc..
+
 ### Rocky9
 
 #### base-build
