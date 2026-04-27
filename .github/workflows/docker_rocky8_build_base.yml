@@ -8,11 +8,11 @@ run-name: >-
       nv_driver_version:
         description: NVIDIA driver module stream
         required: false
-        default: open-dkms
+        default: 'open-dkms'
       nvml_version:
         description: CUDA NVML package version
         required: false
-        default: 13-2
+        default: '13-2'
 permissions:
   contents: read
   packages: write
