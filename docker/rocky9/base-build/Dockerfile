@@ -7,6 +7,6 @@ RUN dnf -y update
 RUN dnf install -y dnf-plugins-core
 RUN dnf -y config-manager --set-enabled crb
 RUN dnf -y groupinstall 'Development Tools'
-RUN dnf -y install rpmdevtools automake autoconf libtool make pkg-config less vim flex bison cmake which zlib-devel doxygen which wget
+RUN dnf -y install bash-completion rpmdevtools automake autoconf libtool make pkg-config less vim flex bison cmake which zlib-devel doxygen which wget
 
 RUN dnf clean all
