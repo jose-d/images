@@ -6,6 +6,7 @@ on:
       doca_gpg_key_url:
         description: Optional override for the Mellanox DOCA repository GPG key URL
         required: false
+  workflow_call:
 permissions:
   contents: read
   packages: write
@@ -32,4 +33,6 @@ jobs:
         with:
           context: docker/rhel8/doca-base
           push: true
-          tags: ghcr.io/${{ github.repository }}/rhel8_doca-base:latest
+          tags: |
+            ghcr.io/${{ github.repository }}/rhel8_doca-base:latest
+            ghcr.io/${{ github.repository }}/rhel8_doca-base:${{ github.run_id }}

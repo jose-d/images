@@ -1,4 +1,7 @@
-FROM rockylinux:8
+ARG IMAGE_REPOSITORY=ghcr.io/jose-d/images
+ARG IMAGE_TAG=latest
+
+FROM ${IMAGE_REPOSITORY}/rhel8_doca-base:${IMAGE_TAG}
 
 RUN dnf update -y && \
     dnf install -y dnf-plugins-core && \

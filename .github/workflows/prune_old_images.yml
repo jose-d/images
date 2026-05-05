@@ -15,6 +15,8 @@ jobs:
     strategy:
       matrix:
         package:
+          - rhel8_doca-base
+          - rhel9_doca-base
           - rocky8_base-build
           - rocky8_base_nv-build
           - rocky8_pmix-build
