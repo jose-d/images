@@ -1,6 +1,9 @@
 # Base build image of Rocky Linux 9
 
-FROM rockylinux:9
+ARG IMAGE_REPOSITORY=ghcr.io/jose-d/images
+ARG IMAGE_TAG=latest
+
+FROM ${IMAGE_REPOSITORY}/rhel9_doca-base:${IMAGE_TAG}
 
 RUN dnf -y update
 # not sure if we really need crb, but if we do, we need dnf-plugins-core too:
