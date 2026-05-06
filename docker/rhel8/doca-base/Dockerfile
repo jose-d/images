@@ -1,6 +1,9 @@
 # DOCA base image based on Rocky Linux 8 (EL8-compatible)
 # Installs doca-host from the NVIDIA/Mellanox DOCA repository
 
+# based on
+# https://developer.nvidia.com/doca-downloads?deployment_platform=Host-Server&deployment_package=DOCA-Host&target_os=Linux&Architecture=x86_64&Profile=doca-ofed&Distribution=RHEL-Rocky&version=8&installer_type=rpm_online
+
 FROM rockylinux:8
 
 ARG DOCA_VERSION=3.3.0
