@@ -25,6 +25,10 @@ jobs:
           - rocky9_base_nv-build
           - rocky9_pmix-build
           - rocky9_slurm-build
+          - rocky10_base-build
+          - rocky10_base_nv-build
+          - rocky10_pmix-build
+          - rocky10_slurm-build
     steps:
       - name: Delete old versions of ${{ matrix.package }}
         uses: actions/delete-package-versions@v5
