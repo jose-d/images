@@ -9,7 +9,7 @@ Repository for docker, apptainer, etc. images
 
 ```docker pull ghcr.io/jose-d/images/rhel8_doca-base:latest```
 
-Base image based on Rocky Linux 8 (RHEL8-compatible) with `doca-host` installed from the [NVIDIA/Mellanox DOCA 3.5.0 RHEL8 repository](https://linux.mellanox.com/public/repo/doca/3.5.0/rhel8/x86_64/).
+Base image based on Rocky Linux 8 (RHEL8-compatible) with `doca-ofed` (including UCX 1.22) installed from the [NVIDIA/Mellanox DOCA 3.5.0 RHEL8 repository](https://linux.mellanox.com/public/repo/doca/3.5.0/rhel8/x86_64/).
 
 ### RHEL9 (Rocky Linux 9)
 
@@ -17,7 +17,7 @@ Base image based on Rocky Linux 8 (RHEL8-compatible) with `doca-host` installed 
 
 ```docker pull ghcr.io/jose-d/images/rhel9_doca-base:latest```
 
-Base image based on Rocky Linux 9 (RHEL9-compatible) with `doca-host` installed from the [NVIDIA/Mellanox DOCA 3.5.0 RHEL9 repository](https://linux.mellanox.com/public/repo/doca/3.5.0/rhel9/x86_64/).
+Base image based on Rocky Linux 9 (RHEL9-compatible) with `doca-ofed` (including UCX 1.22) installed from the [NVIDIA/Mellanox DOCA 3.5.0 RHEL9 repository](https://linux.mellanox.com/public/repo/doca/3.5.0/rhel9/x86_64/).
 
 ### Rocky8
 
@@ -31,7 +31,7 @@ Basic build image based on Rocky Linux 8 containing common building dependencies
 
 ```docker pull ghcr.io/jose-d/images/rocky8_base_nv-build:latest```
 
-Image extending `base-build` with the NVIDIA NVML development and runtime libraries needed for Slurm integration.
+Image extending `base-build` with `libnvidia-ml` and `cuda-nvml-devel` (CUDA 13.2 series by default) from NVIDIA's CUDA repository, needed for Slurm's NVML integration.
 
 #### pmix-build
 
@@ -57,7 +57,7 @@ Basic build image based on Rocky Linux 9 containing common building dependencies
 
 ```docker pull ghcr.io/jose-d/images/rocky9_base_nv-build:latest```
 
-Image extending `base-build` with the NVIDIA NVML development and runtime libraries needed for Slurm integration.
+Image extending `base-build` with `libnvidia-ml` and `cuda-nvml-devel` (CUDA 13.2 series by default) from NVIDIA's CUDA repository, needed for Slurm's NVML integration.
 
 #### pmix-build
 
@@ -102,7 +102,7 @@ Image extending `base_nv-build` with PMIx build dependencies.
 
 ```docker pull ghcr.io/jose-d/images/rocky10_slurm-build:latest```
 
-Image extending `base_nv-build` with Slurm build dependencies. `http-parser-devel` is not available for EL10 (BaseOS, AppStream, CRB or EPEL 10), so Slurm builds from this image cannot include `slurmrestd`.
+Image extending `base_nv-build` with Slurm build dependencies. `http-parser-devel` is not available for EL10 (BaseOS, AppStream, CRB or EPEL 10); `llhttp-devel` supplies the HTTP parser for Slurm 26.05 `slurmrestd`, while older Slurm releases need a separately rebuilt http-parser package.
 
 The images can also be built locally, for example with podman:
 
